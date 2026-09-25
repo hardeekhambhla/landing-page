@@ -49,16 +49,14 @@ h1 { margin:0; font-size:clamp(40px, 7vw, 56px); font-weight:700; letter-spacing
 .card small { font-size:15px; color:var(--label2); }
 .host { margin-top:20px; padding-top:16px; border-top:1px solid var(--fill); font-size:13px; color:var(--label2); }
 
-.nav { position:absolute; top:50%; z-index:2; width:40px; height:40px; margin-top:-20px; border:0; border-radius:50%;
-  background:var(--card); color:var(--label); font-size:24px; line-height:1; box-shadow:var(--shadow), 0 0 0 1px var(--fill);
-  cursor:pointer; transition:opacity .2s; }
+.pager { display:flex; justify-content:center; align-items:center; gap:12px; margin-bottom:12px; }
+.nav { width:32px; height:32px; padding:0 0 2px; border:0; border-radius:50%; background:var(--fill); color:var(--label);
+  font-size:20px; line-height:1; cursor:pointer; transition:opacity .2s; }
 .nav[hidden] { display:none; }
-.nav:disabled { opacity:0; pointer-events:none; }
-.prev { left:max(8px, calc(var(--gutter) - 52px)); }
-.next { right:max(8px, calc(var(--gutter) - 52px)); }
+.nav:disabled { opacity:.3; cursor:default; }
 @media (hover:none) { .nav { display:none; } }
 
-.dots { display:flex; justify-content:center; gap:8px; width:fit-content; margin:0 auto 12px; padding:8px 12px; border-radius:999px; background:var(--fill); }
+.dots { display:flex; justify-content:center; gap:8px; padding:8px 12px; border-radius:999px; background:var(--fill); }
 .dots[hidden] { display:none; }
 .dots button { width:7px; height:7px; padding:0; border:0; border-radius:50%; background:var(--label2); opacity:.45; cursor:pointer; transition:opacity .2s, transform .2s; }
 .dots button[aria-selected="true"] { opacity:1; background:var(--label); transform:scale(1.15); }
