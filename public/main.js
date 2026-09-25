@@ -7,16 +7,18 @@ const track = document.getElementById("track");
 const dotsEl = document.getElementById("dots");
 const [prev, next] = ["prev", "next"].map((c) => document.querySelector(`.nav.${c}`));
 
-const cards = sites.map((s) => {
+const cards = sites.map((s, i) => {
   const a = document.createElement("a");
   a.className = "card";
   a.href = s.url;
   a.innerHTML = `
-    <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${s.icon || '<circle cx="12" cy="12" r="9"/>'}</svg></span>
+    <span class="top"><span class="idx"></span><span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span></span>
     <span class="txt"><strong></strong><small></small></span>
-    <span class="open">Open</span>`;
+    <span class="host"></span>`;
+  a.querySelector(".idx").textContent = String(i + 1).padStart(2, "0");
   a.querySelector("strong").textContent = s.name;
   a.querySelector("small").textContent = s.desc;
+  a.querySelector(".host").textContent = new URL(s.url).host;
   return a;
 });
 track.append(...cards);
