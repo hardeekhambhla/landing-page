@@ -39,7 +39,9 @@ h1 { margin:0; font-size:clamp(40px, 7vw, 56px); font-weight:700; letter-spacing
 .top { display:flex; justify-content:space-between; align-items:center; color:var(--label2); font-size:13px; font-weight:500; font-variant-numeric:tabular-nums; letter-spacing:.04em; }
 .arrow svg { display:block; width:22px; height:22px; transition:transform .3s var(--ease), color .2s; }
 .card:hover .arrow svg { transform:translate(2px,-2px); color:var(--accent); }
-.txt { margin-top:auto; display:flex; flex-direction:column; gap:6px; }
+.art { flex:1; min-height:0; width:100%; margin:8px 0; color:var(--label2); opacity:.75; transition:color .3s, opacity .3s; }
+.card:hover .art { color:var(--label); opacity:1; }
+.txt { display:flex; flex-direction:column; gap:6px; }
 .card strong { font-size:28px; font-weight:600; letter-spacing:-.025em; line-height:1.1; }
 .card small { font-size:15px; color:var(--label2); }
 .host { margin-top:20px; padding-top:16px; border-top:1px solid var(--fill); font-size:13px; color:var(--label2); }

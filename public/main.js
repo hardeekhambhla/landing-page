@@ -13,6 +13,7 @@ const cards = sites.map((s, i) => {
   a.href = s.url;
   a.innerHTML = `
     <span class="top"><span class="idx"></span><span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span></span>
+    <svg class="art" viewBox="0 0 200 120" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${s.art || ""}</svg>
     <span class="txt"><strong></strong><small></small></span>
     <span class="host"></span>`;
   a.querySelector(".idx").textContent = String(i + 1).padStart(2, "0");
