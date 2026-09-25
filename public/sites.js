@@ -2,7 +2,7 @@
 // art: inline SVG (viewBox 0 0 200 120, hairline strokes, currentColor).
 window.SITE = {
   name: "hardee",
-  tagline: "Write. Shoot. Send.",
+  tagline: "Pages from my twenties.",
   sites: [
     {
       name: "Blog", desc: "Words, whenever they come.", url: "https://blog.hardee.co.in",
