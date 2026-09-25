@@ -9,7 +9,7 @@ window.SITE = {
       art: '<path d="M40 30h70" stroke-width="3"/><path d="M40 52h120M40 66h104M40 80h118M40 94h60"/><path d="M104 88v12" stroke-width="1.5"/>',
     },
     {
-      name: "Photography", desc: "What I see, most days.", url: "https://photography.hardee.co.in",
+      name: "Photography", desc: "What I see, most days.", url: "https://instagram.com/postcards.by.hardee", label: "instagram.com/postcards.by.hardee",
       art: '<path d="M34 42V26h16M150 26h16v16M166 78v16h-16M50 94H34V78"/><path d="M100 54v12M94 60h12"/><path d="M34 51h132M34 69h132M78 26v68M122 26v68" stroke-opacity=".25"/><text x="34" y="112" font-size="9" fill="currentColor" stroke="none" font-family="ui-monospace,monospace" letter-spacing="1">1/250  f/2.8  ISO 100</text>',
     },
     {

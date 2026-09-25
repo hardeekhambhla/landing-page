@@ -19,7 +19,7 @@ const cards = sites.map((s, i) => {
   a.querySelector(".idx").textContent = String(i + 1).padStart(2, "0");
   a.querySelector("strong").textContent = s.name;
   a.querySelector("small").textContent = s.desc;
-  a.querySelector(".host").textContent = new URL(s.url).host;
+  a.querySelector(".host").textContent = s.label || new URL(s.url).host;
   return a;
 });
 track.append(...cards);
