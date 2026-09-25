@@ -17,7 +17,7 @@ window.SITE = {
       art: '<rect x="30" y="16" width="140" height="92" rx="4"/><rect x="138" y="26" width="22" height="28" rx="1.5" stroke-dasharray="2 2.5"/><circle cx="128" cy="50" r="14"/><path d="M116 46c4-3 7 3 12 0s7 3 12 0M116 54c4-3 7 3 12 0s7 3 12 0"/><path d="M50 74h56M50 86h44M50 98h52"/>',
     },
     {
-      name: "Healthm", desc: "Nutri-score for any food.", url: "https://healthm.hardee.co.in",
+      name: "Healthm", desc: "Nutri-score for any food.", url: "https://health.hardee.co.in",
       art: '<rect x="20" y="46" width="28" height="28" rx="7"/><text x="34" y="65" font-size="12" text-anchor="middle" fill="currentColor" stroke="none" font-family="Inter,system-ui,sans-serif">A</text><rect x="52" y="38" width="38" height="44" rx="9" stroke-width="1.6"/><text x="71" y="68" font-size="22" text-anchor="middle" fill="currentColor" stroke="none" font-family="Inter,system-ui,sans-serif" font-weight="600">B</text><rect x="94" y="46" width="28" height="28" rx="7"/><text x="108" y="65" font-size="12" text-anchor="middle" fill="currentColor" stroke="none" font-family="Inter,system-ui,sans-serif">C</text><rect x="126" y="46" width="28" height="28" rx="7"/><text x="140" y="65" font-size="12" text-anchor="middle" fill="currentColor" stroke="none" font-family="Inter,system-ui,sans-serif">D</text><rect x="158" y="46" width="28" height="28" rx="7"/><text x="172" y="65" font-size="12" text-anchor="middle" fill="currentColor" stroke="none" font-family="Inter,system-ui,sans-serif">E</text><path d="M20 98h166" stroke-opacity=".25"/><path d="M52 98h38" stroke-width="1.6"/>',
     },
   ],
