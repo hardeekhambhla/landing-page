@@ -24,33 +24,53 @@ const cards = sites.map((s, i) => {
 });
 track.append(...cards);
 
-const dots = cards.map((_, i) => {
-  const d = document.createElement("button");
-  d.setAttribute("role", "tab");
-  d.setAttribute("aria-label", `Go to ${sites[i].name}`);
-  d.addEventListener("click", () => goTo(i));
-  return d;
-});
-dotsEl.append(...dots);
-
 const step = () => cards[0].offsetWidth + parseFloat(getComputedStyle(track).columnGap || 16);
-const goTo = (i) => track.scrollTo({ left: Math.max(0, Math.min(i, cards.length - 1)) * step(), behavior: "smooth" });
+const maxScroll = () => Math.max(0, track.scrollWidth - track.clientWidth);
+// reachable snap positions; trailing cards collapse into the end position
+const positions = () => [...new Set(cards.map((_, i) => Math.round(Math.min(i * step(), maxScroll()))))];
+
+let dots = [];
+function buildDots() {
+  const n = positions().length;
+  if (dots.length === n) return;
+  dots = Array.from({ length: n }, (_, i) => {
+    const d = document.createElement("button");
+    d.setAttribute("role", "tab");
+    d.setAttribute("aria-label", `Page ${i + 1}`);
+    d.addEventListener("click", () => goTo(i));
+    return d;
+  });
+  dotsEl.replaceChildren(...dots);
+}
+const current = () => {
+  const p = positions();
+  return p.reduce((best, v, i) => (Math.abs(v - track.scrollLeft) < Math.abs(p[best] - track.scrollLeft) ? i : best), 0);
+};
+const goTo = (i) => {
+  const p = positions();
+  track.scrollTo({ left: p[Math.max(0, Math.min(i, p.length - 1))], behavior: "smooth" });
+};
 
 function update() {
-  const max = track.scrollWidth - track.clientWidth;
-  const overflow = max > 2;
-  const atEnd = overflow && track.scrollLeft >= max - 2;
-  const i = atEnd ? cards.length - 1 : Math.round(track.scrollLeft / step());
+  buildDots();
+  const overflow = maxScroll() > 2;
+  const i = current();
+  const last = positions().length - 1;
+  const vw = track.getBoundingClientRect();
   dots.forEach((d, n) => d.setAttribute("aria-selected", n === i));
-  cards.forEach((c, n) => c.classList.toggle("active", !overflow || n === i));
-  dotsEl.hidden = !overflow;
+  // only cards fully in view are bright; cut-off ones are dimmed
+  cards.forEach((c) => {
+    const r = c.getBoundingClientRect();
+    c.classList.toggle("active", !overflow || (r.left >= vw.left - 2 && r.right <= vw.right + 2));
+  });
+  dotsEl.hidden = !overflow || last < 1;
   prev.hidden = next.hidden = !overflow;
-  prev.disabled = track.scrollLeft <= 2;
-  next.disabled = atEnd;
+  prev.disabled = i === 0;
+  next.disabled = i === last;
 }
 
-prev.addEventListener("click", () => goTo(Math.round(track.scrollLeft / step()) - 1));
-next.addEventListener("click", () => goTo(Math.round(track.scrollLeft / step()) + 1));
+prev.addEventListener("click", () => goTo(current() - 1));
+next.addEventListener("click", () => goTo(current() + 1));
 track.addEventListener("scroll", () => requestAnimationFrame(update), { passive: true });
 addEventListener("resize", update);
 addEventListener("keydown", (e) => {
