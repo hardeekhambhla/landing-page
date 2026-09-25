@@ -26,8 +26,8 @@ track.append(...cards);
 
 const step = () => cards[0].offsetWidth + parseFloat(getComputedStyle(track).columnGap || 16);
 const maxScroll = () => Math.max(0, track.scrollWidth - track.clientWidth);
-// reachable snap positions; trailing cards collapse into the end position
-const positions = () => [...new Set(cards.map((_, i) => Math.round(Math.min(i * step(), maxScroll()))))];
+// one snap position per card (trailing padding lets the last card reach the start)
+const positions = () => cards.map((_, i) => Math.round(Math.min(i * step(), maxScroll())));
 
 let dots = [];
 function buildDots() {
@@ -53,7 +53,9 @@ const goTo = (i) => {
 
 function update() {
   buildDots();
-  const overflow = maxScroll() > 2;
+  const last0 = cards[cards.length - 1];
+  const overflow = last0.offsetLeft + last0.offsetWidth > track.clientWidth + 2;
+  track.classList.toggle("fits", !overflow);
   const i = current();
   const last = positions().length - 1;
   const vw = track.getBoundingClientRect();
